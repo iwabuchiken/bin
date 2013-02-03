@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#echo $1
+echo "\$1=$1"
+
+
+if [ -n $1 ]; then
+	echo "ag: apt-get"
+	echo "<Usage>"
+	echo "	ag [options] [pkg-name]"
+	echo "<Options>"
+	echo "-i	install"
+	exit 0
+fi
+
+if [ "$1" == "-i" ]; then
+	if [ -n $2 ]; then
+		echo "Please enter the package name to install"
+		exit 1
+	fi
+else
+	echo "Unknown option: $1"
+	exit 1
+fi

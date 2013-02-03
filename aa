@@ -1,0 +1,93 @@
+#!/bin/bash
+##!/bin/sh
+
+#export PATH=$PATH:/home/iwabuchiken/ws/ws_eclipse/G_nbp_new
+#echo "New path set => /home/iwabuchiken/ws/ws_eclipse/G_nbp_new"
+
+#echo $PATH
+
+#echo cd ./ws
+
+#java /home/iwabuchiken/ws/ws_eclipse/Time_calculator/bin/p1/E_5_multiple_sources
+
+#################### Function: show_git()
+show_git() {
+	echo git pull git@github.com:iwabuchiken/FM.git
+	echo git reset --hard ORIG_HEAD
+	echo git tag -a XXXX
+	echo git push origin master
+}
+
+#################### Function: show_fm()
+show_fm() {
+	echo pushd /home/iwabuchiken/ws/FM
+	echo gitk \&
+}
+
+#################### Function: show_help()
+show_help() {
+
+	echo \<Usage\>
+	echo 	"	aa [Options]"
+	echo \<Options\>
+	echo "	fm	Show Freemind-related commands"
+	echo "	fm2	Git pull FM"
+	echo "	git	Show git-related commands"
+	echo "	-h	Show help"
+
+}
+
+#################### Function: update_fm()
+update_fm() {
+	echo "Entering ws/FM/"
+	pushd ws/FM/
+	echo "Git-pulling remote"
+	git pull git@github.com:iwabuchiken/FM.git
+	popd
+	echo "Update FM => Done"
+
+}
+
+
+#################### Show infos
+if [ "$1" == "git" ]; then
+	
+	show_git
+	
+	exit 0
+elif [ "$1" == "fm" ]; then
+
+	show_fm
+
+	exit 0
+elif [ "$1" == "fm2" ]; then
+
+	update_fm
+
+	exit 0
+elif [ "$1" == "-h" ]; then
+
+	show_help
+
+	exit 0
+
+fi
+
+
+#################### Start programs
+# On the character "&" => http://itpro.nikkeibp.co.jp/article/COLUMN/20060228/231027/
+#echo /home/iwabuchiken/ws/ws_eclipse/TC2/build/jar/TC2.jar &
+#/home/iwabuchiken/ws/ws_eclipse/TC2/build/jar/TC2.jar &
+echo /home/iwabuchiken/ws/ws_eclipse/TC2/build/release/TC2.jar &
+/home/iwabuchiken/ws/ws_eclipse/TC2/build/release/TC2.jar &
+
+echo /usr/bin/freemind &
+/usr/bin/freemind &
+
+echo /usr/bin/eclipse &
+/usr/bin/eclipse &
+
+#################### Show commands
+echo cd /home/iwabuchiken/ws/FM
+echo git pull git@github.com:iwabuchiken/FM.git
+
