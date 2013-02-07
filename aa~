@@ -10,18 +10,30 @@
 
 #java /home/iwabuchiken/ws/ws_eclipse/Time_calculator/bin/p1/E_5_multiple_sources
 
+#################### Global vars
+FM_HOME="/home/iwabuchiken/works/ws/FM"
+
+#################### Function: show_bash()
+show_bash() {
+	echo export PATH=\$PATH:/home/iwabuchiken/works/PROGRAMS/bin:/home/iwabuchiken/works/PROGRAMS/G_nbp_new
+
+}
+
 #################### Function: show_git()
 show_git() {
 	echo git pull git@github.com:iwabuchiken/FM.git
 	echo git reset --hard ORIG_HEAD
 	echo git tag -a XXXX
 	echo git push origin master
+	echo git config --global alias.s status
 }
 
 #################### Function: show_fm()
 show_fm() {
-	echo pushd /home/iwabuchiken/ws/FM
-	echo gitk \&
+#	echo pushd /home/iwabuchiken/ws/FM
+#	echo gitk \&
+	pushd $FM_HOME
+	gitk &
 }
 
 #################### Function: show_help()
@@ -30,21 +42,38 @@ show_help() {
 	echo \<Usage\>
 	echo 	"	aa [Options]"
 	echo \<Options\>
+	echo "	b	Show bash-related commands"
 	echo "	fm	Show Freemind-related commands"
 	echo "	fm2	Git pull FM"
 	echo "	git	Show git-related commands"
+	echo "	main	Show main commands"
 	echo "	-h	Show help"
 
 }
 
 #################### Function: update_fm()
 update_fm() {
-	echo "Entering ws/FM/"
-	pushd ws/FM/
+#	FM_HOME="/home/iwabuchiken/works/ws/FM"
+	echo "Entering $FM_HOME"
+#	echo "Entering ws/FM/"
+#	pushd "$FM_HOME"
+	pushd $FM_HOME
+
+	#debug
+#	exit 0
+
 	echo "Git-pulling remote"
 	git pull git@github.com:iwabuchiken/FM.git
 	popd
+	echo "Update FM => Done"
 
+}
+
+#################### Function: show_main()
+show_main() {
+
+	echo cd ~/works/PROGRAMS/bin
+	echo cd ~/works/ws
 }
 
 
@@ -64,6 +93,13 @@ elif [ "$1" == "fm2" ]; then
 	update_fm
 
 	exit 0
+
+elif [ "$1" == "main" ]; then
+
+	show_main
+
+	exit 0
+
 elif [ "$1" == "-h" ]; then
 
 	show_help
